@@ -10,7 +10,11 @@
 
 ## Features
 
-- Online vehicle inspection booking
-- Admin dashboard to manage bookings
-- Support for multiple vehicle types
-- Responsive design for desktop and mobile
+- **Online vehicle inspection booking** – users can select available slots and schedule inspections easily  
+- **Admin dashboard** – manage, approve, and track all bookings in one place  
+- **Support for multiple vehicle types** – cars, trucks, trailers, etc.  
+- **Booking history and reports** – view past inspections and generate simple reports  
+- **Email notifications** – confirmations and reminders for bookings  
+- **Responsive design** – works seamlessly on desktop, tablet, and mobile devices  
+- **Validation and error handling** – ensures all data entered is correct and consistent  
+- **Scalable structure** – easy to extend with new features or integrate with other systems
