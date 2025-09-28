@@ -1,0 +1,124 @@
+﻿@section Styles{
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+}
+@model Usluga
+
+<!-- Add Modal -->
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Dodaj uslugu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-action="Create" asp-controller="Usluga" id="addForm">
+                    <div class="form-group">
+                        <label asp-for="naziv" style="font-weight:bold;"></label><input asp-for="naziv" id="Naziv" class="form-control" type="text" placeholder="Naziv" />
+                        <span asp-validation-for="naziv" class="text-danger"></span>
+                        <label asp-for="opis" style="font-weight:bold;"></label><input id="Opis" asp-for="opis" class="form-control" type="text" placeholder="Opis" />
+                        <span asp-validation-for="opis" class="text-danger"></span>
+                        <label asp-for="cena" style="font-weight:bold;"></label> <input asp-for="cena" id="Cena" class="form-control" type="text" placeholder="Cena" />
+                        <span asp-validation-for="cena" class="text-danger"></span>
+
+                    </div>
+                    <div class="pt-3" style="float:right">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                        <button type="submit" class="btn btn-primary">Sacuvaj</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Edit MODAL-->
+
+<div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Izmeni uslugu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Update" asp-controller="Usluga" method="post" id="EditForm">
+                    <div class="form-group">
+                        <input asp-for="id" id="prodid" hidden />
+                        <label asp-for="naziv" style="font-weight:bold;"></label><input asp-for="naziv" id="Naziv1" class="form-control" type="text" placeholder="Naziv" />
+                        <span asp-validation-for="naziv" class="text-danger"></span>
+                        <label asp-for="opis" style="font-weight:bold;"></label><input id="Opis1" asp-for="opis" class="form-control" type="text" placeholder="Opis" />
+                        <span asp-validation-for="opis" class="text-danger"></span>
+                        <label asp-for="cena" style="font-weight:bold;"></label> <input asp-for="cena" id="Cena1" class="form-control" type="text" placeholder="Cena" />
+                        <span asp-validation-for="cena" class="text-danger"></span>
+                    </div>
+                    <div class="pt-3" style="float:right">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                        <button type="submit" id="btnSave" class="btn btn-primary">Izmeni</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--Delete MODAL-->
+<div class="modal fade" id="DeleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Izbrisi termin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Da li ste sigurni?
+            </div>
+            <div class="modal-footer">
+                <form asp-action="Delete" asp-controller="Usluga" method="post">
+                    <input id="deleteId" asp-for="id" hidden />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zatvori</button>
+                    <button type="submit" class="btn btn-primary">Izbrisi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="align-items-center text-center justify-content-center py-4">
+    <h2>CONTENT MANAGMENT SYSTEM</h2><br />
+    <nav class="main_nav">
+        <ul class="list-inline">
+            <li class="list-inline-item"><a asp-controller="CMS" asp-action="Index">Termini</a></li>
+            <li class="list-inline-item"><a asp-controller="CMS" asp-action="UslugaView">Usluge</a></li>
+            
+        </ul>
+    </nav>
+</div>
+<div class="text-center align-items-center justify-content-center">
+    <table id="myTable" class="table-bordered display table-hover text-center" style="font-size:15px;width:70%;">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Naziv</th>
+                <th>Opis</th>
+                <th>Cena</th>               
+                <th><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddModal">Add</button></th>
+
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/UslugaTabela.js"></script>
+
+}

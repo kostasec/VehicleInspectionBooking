@@ -1,0 +1,94 @@
+﻿@page
+@using PregledPlus.Models;
+@model RegisterModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+
+<div class="row d-flex justify-content-center">
+    <div class="col-md-5">
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h2>Create a new account.</h2>
+            <hr />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating pt-5 col-12" style="color:black;">
+                <input asp-for="Input.Email" style="color:black;" class="form-control" autocomplete="username" aria-required="true" />
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="form-floating pt-5 col-6">
+                    <input asp-for="Input.FirstName" style="color:black;" class="form-control" aria-required="true" />
+                    <label asp-for="Input.FirstName"></label>
+                    <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-floating pt-5 col-6">
+                    <input asp-for="Input.LastName" style="color:black;" class="form-control" aria-required="true" />
+                    <label asp-for="Input.LastName"></label>
+                    <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row">
+            <div class="form-floating pt-5 col-6">
+                <input asp-for="Input.Address" style="color:black;" class="form-control" aria-required="true" />
+                <label asp-for="Input.Address"></label>
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
+            </div>
+            <div class="form-floating pt-5 col-6">
+                <input asp-for="Input.reg_oznaka" style="color:black;" class="form-control" aria-required="true" />
+                <label asp-for="Input.reg_oznaka"></label>
+                <span asp-validation-for="Input.reg_oznaka" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="row">
+            <div class="form-floating pt-5 col-6">
+                <input asp-for="Input.Town" style="color:black;" type="text" class="form-control" aria-required="true" />
+                <label asp-for="Input.Town"></label>
+                <span asp-validation-for="Input.Town" class="text-danger"></span>
+            </div>
+            <div class="form-floating pt-5 col-6">
+                <input asp-for="Input.ZipCode" style="color:black;" type="text" value="" class="form-control" aria-required="true" />
+                <label asp-for="Input.ZipCode"></label>
+                <span asp-validation-for="Input.ZipCode" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="form-floating pt-5 col-12">
+                <input asp-for="Input.PhoneNumber" style="color:black;" class="form-control" aria-required="true" />
+                <label asp-for="Input.PhoneNumber"></label>
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-floating pt-5 col-12">
+                <input asp-for="Input.Password" style="color:black;" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-floating pt-5 col-12">
+                <input asp-for="Input.ConfirmPassword" style="color:black;" class="form-control" autocomplete="new-password" aria-required="true" />
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+             @if (SignInManager.IsSignedIn(User) && User.IsInRole(Roles.Role_Admin))
+                {
+            <div class="form-floating pt-5 col-12">
+                <label asp-for="Input.Role"></label><select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select"></select>
+            </div>
+                }
+            <div class="pt-5">
+                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+   
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
